@@ -1,0 +1,19 @@
+!Configure Stackwise Virtual
+conf t
+stackwise-virtual
+ domain 11
+  exit
+!Configure Stackwise Virtual Link
+interface range te1/0/22-23
+ description *SVL*
+ stackwise-virtual link 1
+ exit
+!Create Dual Active Detection Link
+interface te1/0/24
+ description *DAD_LINK*
+ stackwise-virtual dual-active-detection
+ end
+wr
+!
+reload
+!

@@ -1,0 +1,28 @@
+feature vpc
+feature lacp
+ !
+interface mgmt0
+ ip address 172.16.3.113/24
+ no shut
+ !
+ping 172.16.3.114 vrf management
+!
+vpc domain 3
+ role priority 10
+ peer-keepalive destination 172.16.3.114 source 172.16.3.113 vrf management
+ !
+show vpc
+interface port-channel 113
+ description *VPC PEER LINKS*
+ no shut
+ switchport
+ switchport mode trunk
+ vpc peer-link
+!
+sh vpc brief
+ !
+interface eth1/19-20
+ description *VPC PEER LINKS*
+ channel-group 113 mode active
+ no shut
+switchport
