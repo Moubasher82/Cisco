@@ -1,0 +1,21 @@
+vpc domain 4
+  role priority 10
+  peer-keepalive destination 172.16.3.214 source 172.16.3.213
+exit
+interface port-channel 213
+  description *VPC PEER LINKS*
+  switchport mode trunk
+  spanning-tree port type network
+  speed 10000
+  vpc peer-link
+  exit
+interface Ethernet1/19
+  description *VPC PEER LINKS*
+  switchport mode trunk
+  channel-group 213 mode active
+
+interface Ethernet1/20
+  description *VPC PEER LINKS*
+  switchport mode trunk
+  channel-group 213 mode active
+ 
