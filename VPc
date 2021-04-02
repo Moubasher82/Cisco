@@ -19,3 +19,4 @@ interface Ethernet1/20
   switchport mode trunk
   channel-group 213 mode active
  
+k
